@@ -468,6 +468,7 @@ const totalEarnings =
             </p>
             <h1 className="text-xl font-black md:text-3xl">
               Am Barber Booking
+              Your Personal Hair Service
             </h1>
           </div>
 
