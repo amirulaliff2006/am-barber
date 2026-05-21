@@ -467,7 +467,7 @@ const totalEarnings =
               UiTM Kuala Terengganu
             </p>
             <h1 className="text-xl font-black md:text-3xl">
-              Campus Barber Booking
+              Am Barber Booking
             </h1>
           </div>
 
