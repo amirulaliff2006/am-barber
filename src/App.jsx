@@ -34,11 +34,7 @@ import {
 
 const WHATSAPP_NUMBER = "60133525894";
 
-const defaultSlots = [
-  { date: "2026-05-21", time: "8:00 PM", status: "available" },
-  { date: "2026-05-21", time: "8:30 PM", status: "available" },
-  { date: "2026-05-21", time: "9:00 PM", status: "available" },
-];
+
 
 const defaultInfo =
   "This booking system is only for UiTM Kuala Terengganu students. Choose an available slot, fill in your details, and come at your booked time.";
