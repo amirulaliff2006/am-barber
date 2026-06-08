@@ -209,7 +209,8 @@ const currentMonth =
 const realBookings =
   slots.filter(
     (slot) =>
-      slot.status === "booked" &&
+      (slot.status === "booked" ||
+        slot.status === "completed") &&
       slot.clientName &&
       slot.clientName !==
         "Blocked by admin"
