@@ -417,7 +417,14 @@ const totalEarnings =
     "Booking cancelled. Slot available again."
   );
 }
+  async function markDone(id) {
+  await updateDoc(doc(db, "slots", id), {
+    status: "completed",
+    completedAt: serverTimestamp(),
+  });
 
+  setNotice("Booking completed.");
+}
   async function blockSlot(id) {
     await updateDoc(doc(db, "slots", id), {
       status: "booked",
