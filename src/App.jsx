@@ -461,7 +461,31 @@ const totalEarnings =
     const text = encodeURIComponent("Hi, I need help with my haircut booking.");
     window.open(`https://wa.me/${WHATSAPP_NUMBER}?text=${text}`, "_blank");
   }
+  function contactClient(phone, clientName) {
+  if (!phone || phone === "-") {
+    setNotice("Client phone number not available.");
+    return;
+  }
 
+  let cleanPhone = phone.replace(/\D/g, "");
+
+  if (cleanPhone.startsWith("0")) {
+    cleanPhone = "6" + cleanPhone;
+  }
+
+  if (!cleanPhone.startsWith("60")) {
+    cleanPhone = "60" + cleanPhone;
+  }
+
+  const message = encodeURIComponent(
+    `Hi ${clientName || ""}, this is AM Barber regarding your booking.`
+  );
+
+  window.open(
+    `https://wa.me/${cleanPhone}?text=${message}`,
+    "_blank"
+  );
+}
   return (
     <main className="min-h-screen bg-black px-4 py-6 text-white md:px-8">
       <div className="mx-auto max-w-6xl space-y-6">
@@ -818,6 +842,14 @@ const totalEarnings =
             </p>
 
             <div className="mt-3 flex flex-wrap gap-2">
+              {slot.clientPhone && slot.clientPhone !== "-" && (
+  <button
+    onClick={() => contactClient(slot.clientPhone, slot.clientName)}
+    className="rounded-lg bg-green-600 px-3 py-2 text-sm font-semibold hover:bg-green-700"
+  >
+    WhatsApp Client
+  </button>
+)}
               {slot.status === "booked" && (
                 <>
                   <button
