@@ -921,6 +921,28 @@ const totalEarnings =
                         )}
 
                         <div className="mt-4 flex flex-wrap gap-2">
+                          {slot.clientPhone &&
+ slot.clientPhone !== "-" && (
+  <button
+    onClick={() =>
+      contactClient(
+        slot.clientPhone,
+        slot.clientName
+      )
+    }
+    className="
+    rounded-lg
+    bg-green-600
+    px-3
+    py-2
+    text-sm
+    font-semibold
+    hover:bg-green-700
+    "
+  >
+    WhatsApp
+  </button>
+)}
                           {slot.status === "booked" ? (
                             <>
                             <button
