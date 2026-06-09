@@ -171,8 +171,10 @@ useEffect(() => {
       return group;
     }, {});
   }, [slots]);
-  const customerSlots = slots.filter(
-  (slot) => !isPastSlot(slot)
+ const customerSlots = slots.filter(
+  (slot) =>
+    !isPastSlot(slot) &&
+    slot.status !== "completed"
 );
 
 const groupedCustomerSlots = customerSlots.reduce(
@@ -274,7 +276,11 @@ const totalEarnings =
 
     const targetSlot = slots.find((slot) => slot.id === selectedSlot);
 
-    if (!targetSlot || targetSlot.status === "booked") {
+   if (
+  !targetSlot ||
+  targetSlot.status === "booked" ||
+  targetSlot.status === "completed"
+) {
       setNotice("Sorry, this slot is already booked. Please choose another slot.");
       return;
     }
@@ -1120,7 +1126,11 @@ const totalEarnings =
                     {daySlots.map((slot) => (
                       <button
                         key={slot.id}
-                        disabled={slot.status === "booked"}
+                        disabled={
+                          slot.status === "booked" ||
+                          slot.status === "completed"
+                        }
+                          
                         onClick={() => setSelectedSlot(slot.id)}
                         className={`rounded-2xl border p-4 text-left transition ${
                           selectedSlot === slot.id
@@ -1147,8 +1157,10 @@ const totalEarnings =
 
                         <p className="mt-2 text-sm text-zinc-400">
                           {slot.status === "available"
-                            ? "Available"
-                            : "Already booked"}
+                        ? "Available"
+                        : slot.status === "completed"
+                        ? "Completed"
+                        : "Already booked"}
                         </p>
                       </button>
                     ))}
